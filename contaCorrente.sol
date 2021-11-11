@@ -10,6 +10,13 @@ contract MeuContrato {
     uint internal balance;
     address Sacador;
     uint ValorDoSaque;
+    address public depositario;
+    uint public ValorDeposito;
+    
+    
+    event deposito(address depositario, uint ValorDeposito);
+    event saque(address _Sacador, uint _valordosaque);
+
     
     constructor(uint _preco) {
      //   vendedor = msg.sender;
@@ -24,7 +31,10 @@ contract MeuContrato {
     
     function depositar() public payable {
     //    require(msg.value == preco, "Valor incorreto");
-        balance = balance + msg.value;
+    depositario = msg.sender;
+    ValorDeposito = msg.value;
+    balance = balance + msg.value;
+     emit deposito(depositario, ValorDeposito); 
     }
     
     function sacar(address _Sacador, uint _valordosaque) public  {
@@ -32,6 +42,8 @@ contract MeuContrato {
         ValorDoSaque = _valordosaque;
         payable(_Sacador).transfer(ValorDoSaque);
         balance = balance - ValorDoSaque;
+         emit saque(Sacador, ValorDoSaque); 
+
      //   return (value , _Sacador);
     }
     
