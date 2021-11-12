@@ -24,11 +24,9 @@ contract MeuContrato {
     }
 
     function editarProprietario(uint _matricula, address _novoProprietario) public {
+        require(listaDeRegistros[_matricula].proprietario != 0x0000000000000000000000000000000000000000);
         listaDeRegistros[_matricula].proprietario = _novoProprietario;
     }
 
-    function editarEnderecoEDisponibilidade(uint _matricula, string memory _novoEndereco, bool _disponibilidade) public {
-        listaDeRegistros[_matricula] = Registro(_matricula, _novoEndereco, listaDeRegistros[_matricula].proprietario, _disponibilidade);
-    }
 
 }
