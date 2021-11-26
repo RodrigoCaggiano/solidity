@@ -12,12 +12,18 @@ uint data;
 }
 Vacinas[] public ArrayDeVacinas;
 
-function AdicionarVacina(string memory _tipo) public {
-ArrayDeVacinas.push(Vacinas(ArrayDeVacinas.length, _tipo, block.timestamp));
-}
+    function AdicionarVacina(string memory _tipo) public {
+    ArrayDeVacinas.push(Vacinas(ArrayDeVacinas.length, _tipo, block.timestamp));
+    }
 
-function quantidadeTotalVacinas () public view returns (uint) {
-return (ArrayDeVacinas.length);
-}
+    function quantidadeTotalVacinas () public view returns (uint) {
+    return (ArrayDeVacinas.length);
+    }
+
+    function AlterarVacina (uint _index, string memory _novoTipo) public  {
+
+    ArrayDeVacinas[_index].tipo = _novoTipo;
+
+    }
 
 }
